@@ -1,0 +1,9 @@
+<% if (search_results) {%>
+<ul>
+  <% search_results.forEach(function(result) { %>
+  <li class="restaurant-list-item">
+    <%- include("restaurant_card.ejs", { restaurant: result }) %>
+  </li>
+  <% }); %>
+</ul>
+<% } %>

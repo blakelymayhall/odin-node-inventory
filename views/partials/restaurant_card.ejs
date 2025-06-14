@@ -1,0 +1,11 @@
+<div class="restaurant_card">
+  <h2 class="restaurantName"><%= restaurant.name %></h2>
+  <p class="cuisineList"><strong>Cuisine:</strong>
+    <% restaurant.food_types.forEach(function(food_type, i) { %>
+    <%= food_type %><% if (i < restaurant.food_types.length - 1) { %>, <% } %>
+    <% }); %>
+  </p>
+  <p class="priceLabel"><strong>Price:</strong> <%= restaurant.price %></p>
+  <p class="servesDrinksLabel"><strong>Serves Drinks:</strong> <%= restaurant.serves_drinks %></p>
+  <p class="fastFoodLabel"><strong>Fast Food:</strong> <%= restaurant.fast_food %></p>
+</div>

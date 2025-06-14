@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Restaurant Finder</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <%- include("partials/header_bar.ejs") %>
+  <h1>All Restaurants</h1>
+  <ul>
+    <% restaurants.forEach(function(restaurant) { %>
+    <li class="restaurant-list-item">
+      <%- include("partials/restaurant_card.ejs", { restaurant: restaurant }) %>
+    </li>
+    <% }); %>
+  </ul>
+</body>
+
+</html>

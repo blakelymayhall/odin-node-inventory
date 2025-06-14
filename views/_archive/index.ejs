@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Restaurant Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #fff;
+      margin-bottom: 8px;
+      padding: 10px 16px;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .selected {
+      background: #0074D9 !important;
+      color: #fff;
+    }
+
+    .sublist {
+      display: none;
+      margin-top: 8px;
+      margin-left: 20px;
+      background: #f1f1f1;
+      border-radius: 4px;
+      padding: 8px;
+      color: black
+    }
+
+    .expanded>.sublist {
+      display: block;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll(".expandable").forEach(function(item) {
+        item.addEventListener("click", function(e) {
+          if (e.target !== item) return;
+          item.classList.toggle("expanded");
+        });
+      });
+      document.querySelectorAll("li").forEach(function(item) {
+        item.addEventListener("click", function(e) {
+          if (e.target !== item) return;
+          item.classList.toggle("selected");
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <h1>Restaurant Search</h1>
+  <% if (categories && categories.length > 0) { %>
+  <h2>Categories:</h2>
+  <ul>
+    <% categories.forEach(function(category) { %>
+    <li class="<%= (category.subcategories && category.subcategories.length > 0) ? 'expandable' : '' %>">
+      <%= category.label %>
+      <% if (category.subcategories && category.subcategories.length > 0) { %>
+      <div class="sublist">
+        <ul>
+          <% category.subcategories.forEach(function(subcategory) { %>
+          <% if (category.key === "food_type") { %>
+          <li><%= subcategory.food %></li>
+          <% } else if (category.key === "price_level") { %>
+          <li><%= subcategory.price %></li>
+          <% } %>
+          <% }); %>
+        </ul>
+      </div>
+      <% } %>
+    </li>
+    <% }); %>
+  </ul>
+  <form id="searchForm" method="GET" action="/">
+    <input type="hidden" name="selected" id="selectedInput" value="">
+    <button type="submit">Search</button>
+  </form>
+  <% } %>
+  <% if (results && results.length > 0) { %>
+  <h2>Restaurants:</h2>
+  <% } %>
+</body>
+
+</html>

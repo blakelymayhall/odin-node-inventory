@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("blurred-cocktail-bar-closed.jpg");
+    background-repeat: no-repeat;
+    background-size: max(1470px, 100vw) max(798px, 100vh); 
+    height: max(798px, 100vh);
+    width: max(1470px, 100vw);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.header_bar {
+    display: flex;
+    border-bottom: 1.5px solid #e0e0e0; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03); 
+    color: gold;
+    min-width: 100vw;
+    min-height: 5rem;
+    max-height: 5rem;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.header_bar ul, .header_bar ul li a {
+    display: flex;
+    gap: 2.6rem;
+    font-size: 1.2rem;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    color: gold;
+}
+
+.home_page_container {
+    flex: 1 1 auto; 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.description_container{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    display: flex;
+    justify-content: center; 
+    align-items: center;      
+}
+
+.description_card {
+    max-height: 80%;
+    min-height: 80%;
+    min-width: 55%;
+    max-width: 55%;
+    background-color: lightgoldenrodyellow;
+    opacity: 0.8;
+    border-radius: 12px;  
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #e0e0e0;
+}
+
+.description_card h1 {
+    color: black;
+    text-align: center;
+    font-size: 2rem;
+    margin: 1rem 1rem;
+}
+
+.description_card p {
+    color: black;
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 1rem 1rem;
+}
+
+.featured_and_randomizer_container {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;   
+
+    gap: 5rem;
+}
+
+.featured_card, .randomizer_card { 
+    max-height: 33%;
+    min-height: 33%;
+    min-width: 80%;
+    max-width: 80%;
+    background-color: lightgoldenrodyellow;
+    opacity: 0.8;
+    border-radius: 12px;  
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #e0e0e0; 
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.randomizer_header, .featured_header {
+    height: 10%;
+    width: 90%;
+
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    align-items: center;
+}
+
+.randomizer_header h2, .featured_header h2 {
+    height: 100%;
+    color: black;
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+.featured_card .restaurant_card, .randomizer_card .restaurant_card {
+    height: 70%;
+    width: 80%;
+}
+
+.restaurant_card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    background: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.restaurant_card h2 {
+    margin-top: 0;
+    color: #0074D9;
+}
