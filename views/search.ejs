@@ -8,30 +8,35 @@
 
 <body>
   <%- include("partials/header_bar.ejs") %>
-  <h1>Restaurant Search</h1>
-  <form action="/search" method="GET">
-    <label for="food_type_id">Food Type:</label>
-    <select id="food_type_id" name="food_type_id">
-      <% food_types.map(function(food_type) { %>
-      <option value="<%= food_type.id %>"><%= food_type.food %></option>
-      <% }); %>
-    </select>
-    <br>
-    <label for="price_level_id">Price Level:</label>
-    <select id="price_level_id" name="price_level_id">
-      <% price_levels.map(function(price_level) { %>
-      <option value="<%= price_level.id %>"><%= price_level.price %></option>
-      <% }); %>
-    </select>
-    <br>
-    <label for="serves_drinks">Serves Drinks?</label>
-    <input type="checkbox" id="serves_drinks" name="serves_drinks">
-    <br>
-    <label for="is_fast_food">Fast Food?</label>
-    <input type="checkbox" id="is_fast_food" name="is_fast_food">
-    <br>
-    <button type="submit">Search</button>
-  </form>
+  <div class="search_container">
+    <div class="search_card">
+      <h1>Restaurant Search</h1>
+      <form action="/search" method="GET">
+        <label for="food_type_id">Food Type:</label>
+        <select id="food_type_id" name="food_type_id">
+          <option value="Any">Any</option>
+          <% food_types.map(function(food_type) { %>
+          <option value="<%= food_type.id %>"><%= food_type.food %></option>
+          <% }); %>
+        </select>
+        <br>
+        <label for="price_level_id">Price Level:</label>
+        <select id="price_level_id" name="price_level_id">
+          <% price_levels.map(function(price_level) { %>
+          <option value="<%= price_level.id %>"><%= price_level.price %></option>
+          <% }); %>
+        </select>
+        <br>
+        <label for="serves_drinks">Serves Drinks?</label>
+        <input type="checkbox" id="serves_drinks" name="serves_drinks">
+        <br>
+        <label for="is_fast_food">Fast Food?</label>
+        <input type="checkbox" id="is_fast_food" name="is_fast_food">
+        <br>
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
   <br><br>
   <%- include("partials/search_results.ejs") %>
 </body>

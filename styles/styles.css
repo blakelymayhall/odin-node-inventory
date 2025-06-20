@@ -151,3 +151,37 @@ ul {
     margin-top: 0;
     color: #0074D9;
 }
+
+.search_container {
+    display: flex;
+    margin: 2rem auto;
+
+    width: 700px;
+    height: 400px;
+
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.search_card {
+    max-height: 80%;
+    min-height: 80%;
+    min-width: 100%;
+    max-width: 100%;
+    background-color: lightgoldenrodyellow;
+    opacity: 0.8;
+    border-radius: 12px;  
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #e0e0e0;
+    margin: 0 auto;
+
+    padding: 0 2rem;
+}
+
+.search_card h1 {
+    color: black;
+    text-align: center;
+    font-size: 2rem;
+    margin: 1rem 1rem;
+}

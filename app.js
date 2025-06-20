@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const restaurant_router = require("./routers/restaurant_router");
 app.use(express.static("styles"));
+app.use(express.static("views/scripts"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
