@@ -1,9 +1,13 @@
-<% if (search_results) {%>
-<ul>
+<% if (search_performed) { %>
+<% if (search_results && search_results.length > 0) { %>
+<ul class="search_results">
   <% search_results.forEach(function(result) { %>
-  <li class="restaurant-list-item">
+  <li class="restaurant-card">
     <%- include("restaurant_card.ejs", { restaurant: result }) %>
   </li>
   <% }); %>
 </ul>
+<% } else if (search_results && search_results.length == 0) { %>
+<h1 class="no-results">No results found</h1>
+<% } %>
 <% } %>
