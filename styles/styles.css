@@ -143,11 +143,81 @@ ul {
     border: 1px solid #ccc;
     border-radius: 8px;
     margin-bottom: 16px;
-    background: #f9f9f9;
+    background: lightgoldenrodyellow;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    opacity: 0.8;
 }
 
 .restaurant_card h2 {
     margin-top: 0;
     color: #0074D9;
+}
+
+.search_container {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 3rem;
+
+    width: 100%;
+
+    align-items: center;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.search_card {
+    background-color: lightgoldenrodyellow;
+    opacity: 0.8;
+    border-radius: 12px;  
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #e0e0e0;
+    margin: 0 auto;
+
+    padding: 0 2rem;
+}
+
+.search_card h1 {
+    color: black;
+    text-align: center;
+    font-size: 2rem;
+    margin: 1rem 1rem;
+}
+
+ .select-chip {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    background-color: #f0f0f0;
+    border-radius: 16px;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.select-chip.selected {
+    background-color: #0074D9;
+    color: white;
+}
+
+.search-button {
+    background-color: #0074D9;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: block;
+    margin: 1rem auto;
+}
+
+.no-results {
+    text-align: center;
+    font-size: 1.5rem;
+    color: gold
+}
+
+.search_results {
+    width: 60%;
+    margin: 0 auto;
 }

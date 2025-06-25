@@ -4,36 +4,43 @@
 <head>
   <title>Restaurant Finder</title>
   <link rel="stylesheet" href="/styles.css">
+  <script src="/search-chips.js" defer></script>
 </head>
 
 <body>
   <%- include("partials/header_bar.ejs") %>
-  <h1>Restaurant Search</h1>
-  <form action="/search" method="GET">
-    <label for="food_type_id">Food Type:</label>
-    <select id="food_type_id" name="food_type_id">
-      <% food_types.map(function(food_type) { %>
-      <option value="<%= food_type.id %>"><%= food_type.food %></option>
-      <% }); %>
-    </select>
-    <br>
-    <label for="price_level_id">Price Level:</label>
-    <select id="price_level_id" name="price_level_id">
-      <% price_levels.map(function(price_level) { %>
-      <option value="<%= price_level.id %>"><%= price_level.price %></option>
-      <% }); %>
-    </select>
-    <br>
-    <label for="serves_drinks">Serves Drinks?</label>
-    <input type="checkbox" id="serves_drinks" name="serves_drinks">
-    <br>
-    <label for="is_fast_food">Fast Food?</label>
-    <input type="checkbox" id="is_fast_food" name="is_fast_food">
-    <br>
-    <button type="submit">Search</button>
-  </form>
-  <br><br>
-  <%- include("partials/search_results.ejs") %>
+  <div class="search_container">
+    <div class="search_card">
+      <h1>Restaurant Search</h1>
+      <form action="/search" method="GET">
+        <p>Food Type:</p>
+        <input id="food_type_id" type="hidden" value="" name="food_type_id"></input>
+        <% food_types.map(function(food_type) { %>
+        <div class="food-type-chip select-chip" data-food-type-id="<%= food_type.id %>"><%= food_type.food %></div>
+        <% }); %>
+        <br>
+        <p>Price Level:</p>
+        <input id="price_level_id" type="hidden" value="" name="price_level_id"></input>
+        <% price_levels.map(function(price_level) { %>
+        <div class="price-level-chip select-chip" data-price-level-id="<%= price_level.id %>"><%= price_level.price %></div>
+        <% }); %>
+        <br>
+        <p>Serves Drinks?</p>
+        <input id="serves_drinks" type="hidden" value="" name="serves_drinks"></input>
+        <div class="serves-drinks-chip select-chip" data-serves-drinks-bool="true">Yes</div>
+        <div class="serves-drinks-chip select-chip" data-serves-drinks-bool="false">No</div>
+        <br>
+        <p>Fast Food?</p>
+        <input id="is_fast_food" type="hidden" value="" name="is_fast_food"></input>
+        <div class="is-fast-food-chip select-chip" data-is-fast-food-bool="true">Yes</div>
+        <div class="is-fast-food-chip select-chip" data-is-fast-food-bool="false">No</div>
+        <br>
+        <button class="search-button" type="submit">Search</button>
+      </form>
+    </div>
+    <br><br>
+    <%- include("partials/search_results.ejs") %>
+  </div>
 </body>
 
 </html>
