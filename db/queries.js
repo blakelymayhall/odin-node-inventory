@@ -1,3 +1,4 @@
+const { restaurants_get } = require("../controllers/restaurant_controller");
 const pool = require("./pool");
 
 async function get_food_types() {
@@ -117,9 +118,49 @@ async function get_filtered_restaurants(food_type_id, price_level_id, serves_dri
     const cardPlaceholders = ids.map((_, i) => `$${i + 1}`).join(", ");
     const cardQuery = `SELECT * FROM restaurant_card_view WHERE id IN (${cardPlaceholders})`;
 
-    const { rows: cardRows } = await pool.query(cardQuery, ids);
+    const { rows: cardData } = await pool.query(cardQuery, ids);
 
-    return cardRows;
+    return cardData;
+}
+
+async function get_restaurants_by_name(name) {
+    const query = "SELECT * FROM restaurants WHERE LOWER(name) LIKE LOWER($1)";
+    const { rows } = await pool.query(query, [`%${name}%`]);
+    return rows;
+}
+
+async function add_restaurant(name, food_type_id, price_level_id, serves_drinks, is_fast_food) {
+    const search_results = await get_restaurants_by_name(name);
+
+    if (search_results.length === 0 && name) {
+        const insertQuery = `INSERT INTO restaurants (name, serves_drinks, fast_food, price_level_id) VALUES ($1, $2, $3, $4) RETURNING id`;
+        const id = await pool.query(insertQuery, [name, serves_drinks, is_fast_food, price_level_id]);
+
+        food_type_id.forEach(async (food_type) => {
+            const insertFoodTypeQuery = `INSERT INTO restaurant_food_type (restaurant_id, food_type_id) VALUES ($1, $2) ON CONFLICT DO NOTHING`;
+            await pool.query(insertFoodTypeQuery, [id.rows[0].id, food_type]);
+        });
+
+        const cardQuery = `SELECT * FROM restaurant_card_view WHERE id = $1`;
+        const { rows: cardData } = await pool.query(cardQuery, [id.rows[0].id]);
+
+        return {
+            success: true,
+            message: "Restaurant added successfully",
+            card: cardData,
+        };
+    } else {
+        const cardQuery = `SELECT * FROM restaurant_card_view WHERE id = ($1)`;
+        const { rows: cardData } = await pool.query(
+            cardQuery,
+            search_results.map((r) => r.id)
+        );
+        return {
+            success: false,
+            message: "Restaurant already exists",
+            card: cardData,
+        };
+    }
 }
 
 module.exports = {
@@ -127,4 +168,5 @@ module.exports = {
     get_price_levels,
     get_restaurants,
     get_filtered_restaurants,
+    add_restaurant,
 };

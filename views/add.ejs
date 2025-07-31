@@ -9,10 +9,12 @@
 
 <body>
   <%- include("partials/header_bar.ejs") %>
-  <div class="search_container">
-    <div class="search_card">
-      <h1>Restaurant Search</h1>
-      <form action="/search" method="GET">
+  <div class="add_container">
+    <div class="add_card">
+      <h1>Add New Restaurant</h1>
+      <form action="/add" method="GET">
+        <label class="restaurant-name-label" for="name">Restaurant Name:</label><br>
+        <input class="restaurant-name-input" type="text" id="name" name="name" required><br>
         <p>Food Type(s):</p>
         <input id="food_type_id" data-multiple="true" type="hidden" value="" name="food_type_id"></input>
         <% food_types.map(function(food_type) { %>
@@ -20,27 +22,24 @@
         <% }); %>
         <br>
         <p>Price Level:</p>
-        <input id="price_level_id" data-multiple="true" type="hidden" value="" name="price_level_id"></input>
+        <input id="price_level_id" data-multiple="false" type="hidden" value="" name="price_level_id"></input>
         <% price_levels.map(function(price_level) { %>
         <div class="price-level-chip select-chip" data-price-level-id="<%= price_level.id %>"><%= price_level.price %></div>
         <% }); %>
         <br>
         <p>Serves Drinks?</p>
-        <input id="serves_drinks" data-multiple="true" type="hidden" value="" name="serves_drinks"></input>
+        <input id="serves_drinks" data-multiple="false" type="hidden" value="" name="serves_drinks"></input>
         <div class="serves-drinks-chip select-chip" data-serves-drinks-bool="true">Yes</div>
         <div class="serves-drinks-chip select-chip" data-serves-drinks-bool="false">No</div>
         <br>
         <p>Fast Food?</p>
-        <input id="is_fast_food" data-multiple="true" type="hidden" value="" name="is_fast_food"></input>
+        <input id="is_fast_food" data-multiple="false" type="hidden" value="" name="is_fast_food"></input>
         <div class="is-fast-food-chip select-chip" data-is-fast-food-bool="true">Yes</div>
         <div class="is-fast-food-chip select-chip" data-is-fast-food-bool="false">No</div>
         <br>
-        <button class="search-button" type="submit">Search</button>
+        <button class="add-button" type="submit">Add</button>
       </form>
     </div>
-    <br><br>
-    <%- include("partials/search_results.ejs") %>
-  </div>
 </body>
 
 </html>

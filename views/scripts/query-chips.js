@@ -1,22 +1,36 @@
 document.addEventListener("DOMContentLoaded", function () {
     function setupChipSelect({ chipSelector, inputId, dataAttr }) {
         const input = document.getElementById(inputId);
+        const allow_multiple = input.getAttribute("data-multiple") === "true";
         const chips = document.querySelectorAll(chipSelector);
         chips.forEach((chip) => {
             chip.addEventListener("click", function () {
                 const value = chip.getAttribute(dataAttr);
-                let values = input.value ? input.value.split(",").filter(Boolean) : [];
-                const idx = values.indexOf(value);
-                if (idx > -1) {
-                    values.splice(idx, 1);
-                    chip.classList.remove("selected");
-                } else {
-                    values.push(value);
+                if (!allow_multiple) {
+                    input.value = value;
                     chip.classList.add("selected");
+                    chips.forEach((c) => {
+                        if (c !== chip) {
+                            c.classList.remove("selected");
+                        }
+                    });
+                } else {
+                    let values = input.value ? input.value.split(",").filter(Boolean) : [];
+                    const idx = values.indexOf(value);
+                    if (idx > -1) {
+                        values.splice(idx, 1);
+                        chip.classList.remove("selected");
+                    } else {
+                        values.push(value);
+                        chip.classList.add("selected");
+                    }
+                    input.value = values.join(",") + (values.length ? "," : "");
                 }
-                input.value = values.join(",") + (values.length ? "," : "");
             });
-            chip.click();
+
+            if (chip.closest(".search_container")) {
+                chip.click();
+            }
         });
     }
 
