@@ -1,6 +1,8 @@
 * {
+    overscroll-behavior: none;
     margin: 0;
     padding: 0;
+    box-sizing: border-box; /* This helps with padding and borders */
 }
 
 body {
@@ -229,4 +231,11 @@ ul {
     border-radius: 4px;
     font-size: 1rem;
     margin-bottom: 1rem;
+}
+
+.restaurant-list {
+    width:60%;
+    margin: 0 auto;
+    padding: 1rem 0 10rem 0;
+    overflow-y: scroll;
 }
