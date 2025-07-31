@@ -8,8 +8,7 @@
 
 <body>
   <%- include("partials/header_bar.ejs") %>
-  <h1>All Restaurants</h1>
-  <ul>
+  <ul class="restaurant-list">
     <% restaurants.forEach(function(restaurant) { %>
     <li class="restaurant-list-item">
       <%- include("partials/restaurant_card.ejs", { restaurant: restaurant }) %>
