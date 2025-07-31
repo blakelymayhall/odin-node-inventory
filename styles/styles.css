@@ -153,7 +153,7 @@ ul {
     color: #0074D9;
 }
 
-.search_container {
+.search_container, .add_container {
     display: flex;
     margin: 0 auto;
     margin-top: 3rem;
@@ -165,7 +165,7 @@ ul {
     overflow-y: scroll;
 }
 
-.search_card {
+.search_card, .add_card {
     background-color: lightgoldenrodyellow;
     opacity: 0.8;
     border-radius: 12px;  
@@ -176,7 +176,7 @@ ul {
     padding: 0 2rem;
 }
 
-.search_card h1 {
+.search_card h1, .add_card h1 {
     color: black;
     text-align: center;
     font-size: 2rem;
@@ -199,7 +199,7 @@ ul {
     color: white;
 }
 
-.search-button {
+.search-button, .add-button {
     background-color: #0074D9;
     color: white;
     border: none;
@@ -220,4 +220,13 @@ ul {
 .search_results {
     width: 60%;
     margin: 0 auto;
+}
+
+.restaurant-name-input {
+    width: 75%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
 }

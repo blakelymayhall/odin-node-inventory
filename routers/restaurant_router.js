@@ -9,5 +9,6 @@ restaurant_router.get("/random-restaurant", async (req, res) => {
 });
 restaurant_router.get("/restaurants", restaurant_controller.restaurants_get);
 restaurant_router.get("/search", restaurant_controller.search_get);
+restaurant_router.get("/add", restaurant_controller.add_get);
 
 module.exports = restaurant_router;
